@@ -129,8 +129,16 @@ def plot_psd(raw):
     st.pyplot(fig)
 
 def plot_jointplot(data, selected_channel):
-    fig = sns.jointplot(x=np.arange(len(data[selected_channel])), y=data[selected_channel], kind='scatter', height=6)
-    st.pyplot(fig)
+    sns.set_context("notebook", font_scale=0.5)  # Shrinks font sizes (axis labels, ticks)
+    fig = sns.jointplot(
+        x=np.arange(len(data[selected_channel])),
+        y=data[selected_channel],
+        kind='scatter',
+        height=3.5,              # Overall figure size (smaller than default 6)
+        space=0.2,               # Space between main plot and marginal plots
+        s=10                     # Size of scatter plot markers
+    )
+    st.pyplot(fig.figure)       # Use `.figure` to display correctly in Streamlit
 
 # Streamlit Page Configuration
 st.set_page_config(page_title="EEG Data Visualization", layout="wide")
@@ -156,7 +164,7 @@ if data is not None:
     st.subheader("Power Spectral Density")
     plot_psd(raw)
     
-    st.subheader("Join Plot")
+    st.subheader("Joint Plot")
     plot_jointplot(data, selected_channel)
 
 st.sidebar.header("Navigation")

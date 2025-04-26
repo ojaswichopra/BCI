@@ -6,6 +6,23 @@ import time
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+# Page Configurations
+st.set_page_config(page_title="BCI with EEG & Deep Learning", page_icon="🧠", layout="wide")
+
+# Custom Styling
+st.markdown(
+    """
+    <style>
+        .big-title { font-size: 8.5em; font-weight: bold; color: #4CAF50; text-align: center; }
+        .sub-title { font-size: 1.5em; color: #555; text-align: center; margin-bottom: 20px; }
+        .section { padding: 30px; border-radius: 10px; background-color: #f9f9f9; margin-bottom: 20px; }
+        .center { text-align: center; }
+        .button-container { text-align: center; margin-top: 20px; }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 n_channels = 12  # Number of EEG channels
 sampling_freq = 128  # Sampling frequency in Hz
 task_duration = 5  # Task duration in seconds
@@ -92,10 +109,6 @@ def extract_Data(dff):
         df = pd.concat([df, new_df], ignore_index=True)
     return df
 
-# Page Configurations
-st.set_page_config(page_title="BCI with EEG & Deep Learning", page_icon="🧠", layout="wide")
-
-# Custom Styling
 # Custom Styling
 st.markdown(
     """
@@ -111,8 +124,13 @@ st.markdown(
 )
 
 # Hero Section
-st.markdown("<p class='big-title'>Revolutionizing Brain-Computer Interfaces with EEG & Deep Learning</p>", unsafe_allow_html=True)
-st.markdown("<p class='sub-title'>Exploring how AI-driven EEG classification can enhance assistive technology and neural research.</p>", unsafe_allow_html=True)
+st.markdown(
+    """
+    <h1 style='text-align: center; color: #4CAF50; font-size: 40px; font-weight: bold; margin-bottom: 10px;'>Revolutionizing Brain-Computer Interfaces with EEG & Deep Learning</h1>
+    <p style='text-align: center; color: #555; font-size: 20px; margin-top: 0; margin-bottom: 20px; '>Exploring how AI-driven EEG classification can enhance assistive technology and neural research</p>
+    """,
+    unsafe_allow_html=True
+)
 
 # Importance & Impact
 st.markdown("<h2 class='center'>Why This Matters</h2>", unsafe_allow_html=True)
@@ -162,12 +180,13 @@ st.markdown("""
 
 # Accuracy Progress Bar
 progress = st.progress(0)
-for i in range(85):
+for i in range(99):
     time.sleep(0.02)
     progress.progress(i + 1)
-st.success("Model Accuracy: 85% 🎯")
+st.success("Model Accuracy: 99% 🎯")
 
 # Statistics & Insights
+colors = px.colors.sequential.Blues_r
 st.markdown("<h2 class='center'>Statistics & Insights</h2>", unsafe_allow_html=True)
 # Feature comparison data
 data = pd.DataFrame({
